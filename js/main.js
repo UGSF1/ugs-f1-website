@@ -439,7 +439,7 @@ const teamsData = {
                 allTimeStats: { gpEntered: 12, pts: 55, highestFinish: "5 (x3)", podiums: 0, highestGrid: "10 (x2)", poles: 0, titles: 0, dnfs: 2 }
             },
             {
-                id: "MYK", name: "Maksym Mykhlyk", num: 23, country: "UA", img: "assets/images/drivers/mykhlyk.png",
+                id: "MYK", name: "Maksym Mykhlyk", num: 37, country: "UA", img: "assets/images/drivers/mykhlyk.png",
                 seasonStats: emptySeasonStats(),
                 allTimeStats: { gpEntered: 11, pts: 3, highestFinish: "9 (x1)", podiums: 0, highestGrid: "12 (x3)", poles: 0, titles: 0, dnfs: 1 }
             }

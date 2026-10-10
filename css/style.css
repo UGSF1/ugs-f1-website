@@ -24,6 +24,13 @@
     box-sizing: border-box;
 }
 
+/* Не даємо телефону самому збільшувати шрифти й не допускаємо горизонтального скролу сторінки */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: #0b0e14;
     color: #ffffff;
@@ -387,6 +394,7 @@ input[type="button"]:hover {
     width: 300px;
     max-width: 85vw;
     height: 100%;
+    overflow-y: auto;
     background: linear-gradient(180deg, #151922 0%, #0d1017 100%);
     border-left: 3px solid #F6FF00;
     transform: translateX(100%);
@@ -897,6 +905,7 @@ input[type="button"]:hover {
 .table-responsive {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .f1-table {
@@ -1825,8 +1834,56 @@ input[type="button"]:hover {
 }
 
 /* ==========================================
-   9. АДАПТИВНІСТЬ (RESPONSIVE STYLES)
+   9. АДАПТИВНІСТЬ (ПЛАНШЕТИ ТА ТЕЛЕФОНИ)
    ========================================== */
+
+/* ---- 9.1. Вузькі ноутбуки / планшети: компактна шапка ----
+   Ряд 1: логотип + бургер. Ряд 2: меню з горизонтальним свайпом. */
+@media (max-width: 1180px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 16px;
+    }
+
+    .logo-link {
+        order: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .nav-menu {
+        order: 3;
+        width: 100%;
+        flex-wrap: nowrap;
+        gap: 6px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-item {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+/* ---- 9.2. Планшети ---- */
 @media (max-width: 992px) {
     .news-hero-container {
         grid-template-columns: 1fr;
@@ -1857,68 +1914,104 @@ input[type="button"]:hover {
     }
 }
 
+/* ---- 9.3. Телефони (великі) ---- */
 @media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .nav-menu {
-        width: 100%;
-    }
-
-    .nav-item {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-
-    .menu-toggle {
-        position: absolute;
-        top: 12px;
-        right: 20px;
+    /* Основний контент */
+    .main-content {
+        margin: 18px auto;
+        padding: 0 14px;
     }
 
     .page-title {
         font-size: 20px;
+        margin-bottom: 16px;
+        padding-left: 10px;
+        border-left-width: 4px;
     }
 
-    .calendar-grid, .teams-grid, .hof-grid, .cards-grid, .drivers-grid {
+    .section-header {
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .filter-label {
+        font-size: 12px;
+    }
+
+    /* 16px, щоб iPhone не "наближав" сторінку при фокусі на select */
+    .f1-select {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .sub-nav {
+        gap: 6px;
+        margin-bottom: 14px;
+    }
+
+    .sub-nav-btn,
+    .race-tab-btn,
+    .back-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    /* Сітки */
+    .teams-grid,
+    .hof-grid,
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .calendar-grid {
+        gap: 12px;
+    }
+
+    .drivers-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    .detail-summary {
-        flex-direction: column;
+    .card,
+    .team-card,
+    .hof-card {
+        padding: 14px;
+    }
+
+    /* Щоб бейдж сезону не накладався на ім'я */
+    .hof-season-badge {
+        top: 10px;
+        right: 10px;
+    }
+
+    .hof-season-badge + h3 {
+        padding-right: 70px;
+    }
+
+    /* Шапка: смуга "наступний етап" + соцмережі */
+    .next-strip-wrap {
+        padding: 8px 14px 10px 14px;
         gap: 10px;
     }
 
-    .driver-header-block {
-        height: 180px;
-    }
-
-    .driver-header-name {
-        font-size: 24px;
-    }
-
-    .driver-stats-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .article-title {
-        font-size: 24px;
-    }
-
-    .article-body p {
-        font-size: 15px;
-    }
-
-    .next-strip-wrap {
-        padding: 10px 20px 12px 20px;
-        gap: 12px;
+    .ns-meta {
+        font-size: 11px;
+        gap: 8px;
     }
 
     .ns-name {
         font-size: 17px;
+        gap: 8px;
+    }
+
+    .ns-flag {
+        width: 18px;
+        height: 18px;
+    }
+
+    .ns-arrow {
+        font-size: 18px;
     }
 
     .ns-socials {
@@ -1935,24 +2028,392 @@ input[type="button"]:hover {
         height: 18px;
     }
 
+    /* Countdown */
+    .countdown {
+        padding: 22px 10px 24px 10px;
+        margin-bottom: 24px;
+        border-radius: 10px;
+    }
+
+    .cd-label {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+    }
+
+    .cd-title {
+        font-size: 16px;
+    }
+
     .cd-grid {
-        gap: 6px;
+        gap: 4px;
+        margin-top: 18px;
     }
 
     .cd-box {
-        min-width: 62px;
+        min-width: 0;
+        flex: 1 1 0;
+    }
+
+    .cd-num {
+        font-size: clamp(26px, 10vw, 56px);
+    }
+
+    .cd-sep {
+        font-size: clamp(22px, 8vw, 40px);
     }
 
     .cd-unit {
         font-size: 9px;
         letter-spacing: 1px;
+        margin-top: 6px;
     }
 
-    .cd-title {
+    .cd-status {
+        font-size: 13px;
+        padding: 6px 14px;
+        margin-top: 18px;
+        letter-spacing: 1.5px;
+    }
+
+    .cd-note {
+        font-size: 11px;
+        margin-top: 14px;
+    }
+
+    /* Новини */
+    .news-hero-container {
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .news-main-info {
+        padding: 14px;
+    }
+
+    .news-main-title {
+        font-size: 18px;
+    }
+
+    .news-main-desc {
+        font-size: 13px;
+    }
+
+    .news-sidebar-grid {
+        gap: 12px;
+    }
+
+    .side-news-thumb {
+        width: 100px;
+        height: 68px;
+    }
+
+    .news-side-list {
+        padding: 12px;
+    }
+
+    /* Стаття */
+    .article-tag {
+        margin-top: 16px;
+    }
+
+    .article-title {
+        font-size: 22px;
+    }
+
+    .article-meta {
+        margin-bottom: 16px;
+    }
+
+    .article-hero {
+        margin-bottom: 18px;
+    }
+
+    .article-body p {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 14px;
+    }
+
+    .article-h {
+        font-size: 18px;
+        margin: 22px 0 10px 0;
+    }
+
+    .article-quote {
+        font-size: 16px;
+        padding: 14px 16px;
+        margin: 20px 0;
+    }
+
+    .article-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    /* Schedule */
+    .sch-heading {
         font-size: 17px;
+        margin-bottom: 10px;
+    }
+
+    .sch-featured {
+        gap: 18px;
+    }
+
+    .sch-all {
+        gap: 12px;
+    }
+
+    /* Таблиці */
+    .f1-table th,
+    .f1-table td {
+        padding: 9px 10px;
+        font-size: 12.5px;
+    }
+
+    .rating-table th,
+    .rating-table td {
+        padding: 9px 10px;
+    }
+
+    .session-tabs button {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Рейтинг */
+    .rating-top {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .rating-top-card {
+        padding: 18px;
+    }
+
+    .rtc-name {
+        font-size: 17px;
+        overflow-wrap: anywhere;
     }
 
     .rtc-rating {
         font-size: 44px;
+        margin-top: 12px;
+    }
+
+    .rtc-stats {
+        gap: 10px;
+    }
+
+    .rating-how {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    /* UGS TV */
+    .tv-layout {
+        gap: 14px;
+    }
+
+    .tv-chat-wrap {
+        min-height: 360px;
+    }
+
+    /* Сторінка пілота */
+    .detail-summary {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .driver-header-block {
+        height: 170px;
+        margin-bottom: 20px;
+    }
+
+    .driver-header-info {
+        padding: 18px;
+    }
+
+    .driver-header-number {
+        font-size: 18px;
+    }
+
+    .driver-header-name {
+        font-size: 24px;
+        margin: 6px 0;
+    }
+
+    .driver-header-meta {
+        font-size: 14px;
+    }
+
+    .driver-stats-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .driver-card {
+        height: 140px;
+    }
+
+    .driver-info {
+        padding: 16px;
+    }
+
+    .driver-card .driver-name {
+        font-size: 17px;
+    }
+
+    /* Сторінка пілота / команди: перевизначаємо inline-стилі з main.js */
+    .team-header-block {
+        height: 150px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .team-header-block h1 {
+        font-size: 20px !important;
+        padding: 16px !important;
+        line-height: 1.25;
+    }
+
+    .team-header-block .team-logo-lg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .team-summary-box,
+    .driver-stats-layout > div[style*="padding:25px"] {
+        padding: 16px !important;
+    }
+
+    /* Бокове меню */
+    .side-menu {
+        width: 280px;
+        padding: 16px;
+    }
+}
+
+/* ---- 9.4. Телефони (звичайні / вузькі) ---- */
+@media (max-width: 560px) {
+    .teams-grid,
+    .hof-grid,
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        padding: 8px 14px;
+    }
+
+    .nav-container {
+        gap: 8px 12px;
+    }
+
+    .league-logo {
+        height: 34px;
+    }
+
+    .logo-fallback {
+        font-size: 16px;
+    }
+
+    .menu-toggle {
+        width: 42px;
+        height: 38px;
+    }
+
+    .nav-item {
+        padding: 7px 11px;
+        font-size: 12px;
+    }
+
+    .news-img-wrapper {
+        height: 200px;
+    }
+
+    .news-badge {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .sch-card {
+        aspect-ratio: 4 / 3;
+        padding: 18px;
+    }
+
+    .sch-name {
+        font-size: 24px;
+        margin-top: 8px;
+    }
+
+    .sch-date {
+        font-size: 14px;
+    }
+
+    .sch-card.has-weather .sch-flag {
+        top: 16px;
+        right: 16px;
+    }
+
+    .sch-weather {
+        margin-top: 14px;
+        padding: 10px;
+    }
+
+    .article-title {
+        font-size: 20px;
+    }
+}
+
+/* ---- 9.5. Дуже вузькі телефони ---- */
+@media (max-width: 400px) {
+    .main-content {
+        padding: 0 12px;
+    }
+
+    .next-strip-wrap {
+        padding: 8px 12px 10px 12px;
+    }
+
+    .ns-name {
+        font-size: 15px;
+    }
+
+    .ns-socials {
+        gap: 6px;
+    }
+
+    .ns-social {
+        width: 32px;
+        height: 32px;
+    }
+
+    .driver-header-name {
+        font-size: 20px;
+    }
+
+    .rtc-rating {
+        font-size: 38px;
+    }
+
+    .f1-table th,
+    .f1-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+/* ---- 9.6. Сенсорні екрани: без "залипання" hover-ефектів ---- */
+@media (hover: none) {
+    .card:hover,
+    .team-card:hover,
+    .hof-card:hover,
+    .news-main-card:hover,
+    .news-side-card:hover,
+    .sch-card:hover,
+    .driver-card:hover,
+    .detail-driver-card:hover,
+    .rating-top-card:hover,
+    .ns-social:hover {
+        transform: none;
     }
 }

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0e14">
     <title>UGS F1 League</title>
 
     <!-- Іконка у вкладці браузера (підставляється той самий файл, що й логотип у шапці) -->
-    <link rel="icon" id="site-favicon" href=".assets/images/logo.png">
+    <link rel="icon" id="site-favicon" href="assets/images/logo.png">
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -256,5 +257,33 @@
     <script src="js/season1-results.js"></script>
     <script src="js/main.js"></script>
     <script src="js/season1-adapter.js"></script>
+
+    <!-- Мобільне меню: після перемикання вкладки центруємо активний пункт у рядку зі свайпом -->
+    <script>
+        (function () {
+            var original = window.switchTab;
+            if (typeof original !== 'function') return;
+
+            function centerNavItem(tabName) {
+                var el = document.getElementById('nav-' + tabName);
+                var menu = document.querySelector('.nav-menu');
+                if (!el || !menu || menu.scrollWidth <= menu.clientWidth) return;
+                var r = el.getBoundingClientRect();
+                var m = menu.getBoundingClientRect();
+                var delta = (r.left + r.width / 2) - (m.left + m.width / 2);
+                try {
+                    menu.scrollTo({ left: menu.scrollLeft + delta, behavior: 'smooth' });
+                } catch (e) {
+                    menu.scrollLeft += delta;
+                }
+            }
+
+            window.switchTab = function (tabName) {
+                var result = original.apply(this, arguments);
+                centerNavItem(tabName);
+                return result;
+            };
+        })();
+    </script>
 </body>
 </html>
