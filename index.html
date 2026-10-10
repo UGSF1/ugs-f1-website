@@ -4,7 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UGS F1 League</title>
+
+    <!-- Іконка у вкладці браузера (підставляється той самий файл, що й логотип у шапці) -->
+    <link rel="icon" id="site-favicon" href="assets/images/logo.png">
+
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        // Логотип: пробуємо кілька варіантів назви файлу.
+        // Це потрібно, бо GitHub Pages розрізняє великі/малі літери (Logo.png != logo.png),
+        // а локально на Windows різниці немає.
+        var LOGO_DIR = 'assets/images/';
+        var LOGO_NAMES = ['logo.png', 'Logo.png', 'LOGO.png', 'logo.PNG', 'Logo.PNG', 'logo.webp', 'logo.svg', 'logo.jpg', 'logo.jpeg'];
+
+        // Файл не завантажився: пробуємо наступну назву, а коли всі закінчились, показуємо текст
+        function logoFail(img) {
+            var i = parseInt(img.getAttribute('data-i') || '0', 10) + 1;
+            if (i < LOGO_NAMES.length) {
+                img.setAttribute('data-i', i);
+                img.src = LOGO_DIR + LOGO_NAMES[i];
+            } else {
+                img.onerror = null;
+                img.style.display = 'none';
+                if (img.nextElementSibling) img.nextElementSibling.style.display = 'block';
+            }
+        }
+
+        // Файл завантажився: ставимо його ж як іконку вкладки
+        function logoOk(img) {
+            var link = document.getElementById('site-favicon');
+            if (link) link.href = img.src;
+        }
+    </script>
 </head>
 <body>
 
@@ -12,7 +43,7 @@
     <header class="navbar">
         <div class="nav-container">
             <a href="#" class="logo-link" onclick="switchTab('home'); return false;">
-                <img src="assets/images/logo.png" alt="UGS Logo" class="league-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <img src="assets/images/logo.png" alt="UGS Logo" class="league-logo" onload="logoOk(this)" onerror="logoFail(this)">
                 <span class="logo-fallback" style="display:none;">UGS LEAGUE</span>
             </a>
 
@@ -35,7 +66,7 @@
         </div>
     </header>
 
-    <!-- Смуга "наступний етап" + ссоцмережі справа -->
+    <!-- Смуга "наступний етап" + соцмережі справа -->
     <div class="next-strip" id="next-strip">
         <div class="next-strip-wrap">
             <!-- Ліва частина (заповнюється в main.js), клік веде в Schedule -->
