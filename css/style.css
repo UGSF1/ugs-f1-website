@@ -1,0 +1,1958 @@
+/* ==========================================
+   1. ШРИФТИ FORMULA 1
+   ========================================== */
+@font-face {
+    font-family: 'Formula1-Bold';
+    src: url('../assets/fonts/Formula1-Bold_web_0.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Formula1-Regular';
+    src: url('../assets/fonts/Formula1-Regular_web_0.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ==========================================
+   2. ТЕМНА КОЛЬОРОВА ГАМА З ЖОВТИМ АКЦЕНТОМ (#F6FF00)
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b0e14;
+    color: #ffffff;
+    font-family: 'Formula1-Regular', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Formula1-Bold', sans-serif;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   2.1. ЗАГАЛЬНІ СТИЛІ ДЛЯ ЗВИЧАЙНИХ КНОПОК
+   ========================================== */
+button,
+.btn,
+input[type="submit"],
+input[type="button"] {
+    font-family: 'Formula1-Bold', sans-serif;
+    background-color: #161b26;
+    color: #ffffff;
+    border: 1px solid #232a3a;
+    padding: 8px 16px;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:hover,
+.btn:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: #F6FF00;
+    border-color: #F6FF00;
+    color: #000000;
+}
+
+/* ==========================================
+   3. ШАПКА САЙТУ (NAVBAR)
+   ========================================== */
+.navbar {
+    background: linear-gradient(135deg, #151922 0%, #0d1017 100%);
+    border-bottom: 3px solid #F6FF00;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 12px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+    max-width: 1350px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.league-logo {
+    height: 42px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.logo-fallback {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    font-family: 'Formula1-Bold', sans-serif;
+    color: #d0d4dc;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: #ffffff;
+    background-color: #1e2430;
+    border-bottom: 2px solid #F6FF00;
+}
+
+/* ==========================================
+   3.0. СМУГА "НАСТУПНИЙ ЕТАП" ПІД ШАПКОЮ (+ СОЦМЕРЕЖІ)
+   ========================================== */
+.next-strip {
+    background: #000000;
+    border-bottom: 1px solid #1a202c;
+}
+
+.next-strip-wrap {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 10px 30px 12px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.next-strip-inner {
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+}
+
+.ns-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 12px;
+    color: #d0d4dc;
+    letter-spacing: 0.5px;
+}
+
+.ns-sep {
+    width: 1px;
+    height: 12px;
+    background: #3a4254;
+}
+
+.ns-live {
+    background: #ff1801;
+    color: #ffffff;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    animation: nsPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes nsPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+.ns-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    text-transform: none;
+}
+
+.ns-flag {
+    width: 22px;
+    height: 22px;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.ns-arrow {
+    color: #F6FF00;
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.next-strip-inner:hover .ns-arrow {
+    transform: translateX(4px);
+}
+
+/* Соцмережі справа в смузі */
+.ns-socials {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.ns-social {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #161b26;
+    border: 1px solid #232a3a;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.ns-social img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+}
+
+.ns-social:hover {
+    background: #1e2430;
+    border-color: #F6FF00;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   3.0.1. COUNTDOWN
+   ========================================== */
+.countdown {
+    text-align: center;
+    padding: 34px 20px 38px 20px;
+    margin-bottom: 40px;
+    background: linear-gradient(180deg, #121620 0%, #0d1017 100%);
+    border: 1px solid #232a3a;
+    border-top: 3px solid #F6FF00;
+    border-radius: 12px;
+}
+
+.cd-label {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 14px;
+    color: #F6FF00;
+    letter-spacing: 2px;
+}
+
+.cd-title {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 22px;
+    color: #ffffff;
+    margin-top: 8px;
+    text-transform: none;
+}
+
+.cd-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 26px;
+}
+
+.cd-box {
+    min-width: 150px;
+}
+
+.cd-num {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: clamp(48px, 9vw, 110px);
+    line-height: 1;
+    color: #ffffff;
+    font-variant-numeric: tabular-nums;
+}
+
+.cd-unit {
+    margin-top: 10px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 12px;
+    color: #8a94a6;
+    letter-spacing: 2px;
+}
+
+.cd-sep {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: clamp(40px, 7vw, 86px);
+    line-height: 1;
+    color: #F6FF00;
+    opacity: 0.8;
+}
+
+.cd-status {
+    display: inline-block;
+    margin-top: 26px;
+    padding: 8px 22px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: #000000;
+    background: #F6FF00;
+    border-radius: 4px;
+    box-shadow: 0 0 18px rgba(246, 255, 0, 0.35);
+    animation: nsPulse 1.6s ease-in-out infinite;
+}
+
+.cd-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #8a94a6;
+}
+
+.countdown.is-live .cd-num {
+    color: #4b5263;
+}
+
+/* ==========================================
+   3.1. БІЧНЕ МЕНЮ (ТРИ РИСКИ)
+   ========================================== */
+.menu-toggle {
+    margin-left: auto;
+    width: 46px;
+    height: 42px;
+    padding: 0;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid #232a3a;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 3px;
+    background: #F6FF00;
+    border-radius: 2px;
+    transition: transform 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background: #1e2430;
+    border-color: #F6FF00;
+}
+
+.side-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 1900;
+}
+
+.side-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 85vw;
+    height: 100%;
+    background: linear-gradient(180deg, #151922 0%, #0d1017 100%);
+    border-left: 3px solid #F6FF00;
+    transform: translateX(100%);
+    transition: transform 0.28s ease;
+    z-index: 2000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.side-menu.open {
+    transform: translateX(0);
+}
+
+.side-menu-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 16px;
+    color: #F6FF00;
+    letter-spacing: 1px;
+    padding-bottom: 14px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #232a3a;
+}
+
+.side-close {
+    padding: 4px 10px;
+    font-size: 14px;
+}
+
+.side-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #d0d4dc;
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.side-item:hover,
+.side-item.active {
+    color: #ffffff;
+    background: #1e2430;
+    border-left-color: #F6FF00;
+}
+
+.side-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff1801;
+    box-shadow: 0 0 8px #ff1801;
+}
+
+/* ==========================================
+   4. ОСНОВНИЙ КОНТЕНТ ТА СЕКЦІЇ
+   ========================================== */
+.main-content {
+    max-width: 1350px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active-section {
+    display: block;
+}
+
+.page-title {
+    font-size: 26px;
+    margin-bottom: 25px;
+    border-left: 5px solid #F6FF00;
+    padding-left: 12px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-label {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 14px;
+    color: #a0a8b8;
+}
+
+.f1-select {
+    font-family: 'Formula1-Bold', sans-serif;
+    padding: 8px 16px;
+    border: 1px solid #2e3545;
+    background: #161b26;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.f1-select:focus {
+    border-color: #F6FF00;
+}
+
+/* ==========================================
+   4.1. СТИЛІ ДЛЯ МАЛИХ КНОПОК ПЕРЕМИКАННЯ ТАБІВ
+   ========================================== */
+.sub-nav, .race-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.sub-nav-btn,
+.race-tab-btn,
+.back-btn {
+    font-family: 'Formula1-Bold', sans-serif;
+    padding: 8px 16px;
+    border: 1px solid #232a3a;
+    background: #161b26;
+    color: #ffffff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.sub-nav-btn:hover,
+.race-tab-btn:hover,
+.back-btn:hover {
+    background: #F6FF00;
+    border-color: #F6FF00;
+    color: #000000;
+}
+
+.sub-nav-btn.active,
+.race-tab-btn.active {
+    background: #F6FF00;
+    border-color: #F6FF00;
+    color: #000000;
+    box-shadow: 0 0 10px rgba(246, 255, 0, 0.2);
+}
+
+/* ==========================================
+   5. ГОЛОВНА СТОРІНКА НОВИН (NEWS HERO GRID)
+   ========================================== */
+.news-hero-container {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 25px;
+    margin-bottom: 40px;
+    align-items: start;
+}
+
+.clickable-news {
+    cursor: pointer;
+}
+
+.news-main-card {
+    background-color: #161b26;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #232a3a;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.news-main-card:hover {
+    transform: translateY(-4px);
+    border-color: #F6FF00;
+}
+
+.news-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(135deg, #1e2430, #0d1017);
+    overflow: hidden;
+}
+
+.news-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.news-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: #F6FF00;
+    color: #000000;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.news-main-info {
+    padding: 20px;
+}
+
+.news-main-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.news-main-desc {
+    color: #a0a8b8;
+    font-size: 14px;
+}
+
+.news-sidebar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.news-side-card {
+    display: flex;
+    gap: 15px;
+    background-color: #161b26;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid #232a3a;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.news-side-card:hover {
+    border-color: #F6FF00;
+    transform: translateY(-2px);
+}
+
+.side-news-thumb {
+    width: 120px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #1e2430, #0d1017);
+}
+
+.side-news-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.side-news-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.news-tag {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 10px;
+    color: #F6FF00;
+    margin-bottom: 4px;
+}
+
+.side-news-content h4 {
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.news-side-list {
+    background-color: #161b26;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #232a3a;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.list-news-item {
+    border-bottom: 1px solid #232a3a;
+    padding-bottom: 10px;
+    transition: opacity 0.2s ease;
+}
+
+.list-news-item:hover h5 {
+    color: #F6FF00;
+}
+
+.list-news-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.list-news-item h5 {
+    font-size: 12px;
+    color: #e0e4ec;
+    transition: color 0.2s ease;
+}
+
+/* ==========================================
+   5.1. СТОРІНКА СТАТТІ НОВИНИ
+   ========================================== */
+.article-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.article-tag {
+    display: inline-block;
+    margin-top: 24px;
+    background: #F6FF00;
+    color: #000;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.article-title {
+    font-size: 34px;
+    line-height: 1.2;
+    margin: 14px 0 10px 0;
+}
+
+.article-meta {
+    color: #8a94a6;
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+
+.article-hero {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    background: #161b26;
+    border: 1px solid #232a3a;
+}
+
+.article-hero img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
+}
+
+.article-body p {
+    color: #d0d4dc;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.article-h {
+    font-size: 22px;
+    margin: 32px 0 14px 0;
+    padding-left: 12px;
+    border-left: 4px solid #F6FF00;
+}
+
+.article-figure {
+    margin: 26px 0;
+}
+
+.article-figure img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    border: 1px solid #232a3a;
+}
+
+.article-figure figcaption {
+    color: #8a94a6;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.article-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin: 26px 0;
+}
+
+.article-gallery img {
+    width: 100%;
+    height: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #232a3a;
+    display: block;
+}
+
+.article-quote {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background: #161b26;
+    border-left: 4px solid #F6FF00;
+    border-radius: 0 8px 8px 0;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.article-quote cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-style: normal;
+    color: #8a94a6;
+}
+
+.article-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 26px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #232a3a;
+}
+
+.article-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================
+   6. CALENDAR, TABLES, HALL OF FAME
+   ========================================== */
+.calendar-grid, .teams-grid, .hof-grid, .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Schedule: контейнер більше не сітка, сітки всередині */
+.calendar-grid.schedule-wrap {
+    display: block;
+}
+
+.card, .team-card, .hof-card {
+    background-color: #161b26;
+    border: 1px solid #232a3a;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover, .team-card:hover, .hof-card:hover {
+    transform: translateY(-4px);
+    border-color: #F6FF00;
+}
+
+.hof-card {
+    position: relative;
+    border-top: 3px solid #F6FF00;
+}
+
+.hof-season-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #1e2534;
+    border: 1px solid #2d364a;
+    color: #F6FF00;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.hof-trophy-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.f1-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #161b26;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #232a3a;
+}
+
+.f1-table th {
+    font-family: 'Formula1-Bold', sans-serif;
+    background-color: #1f2636;
+    color: #ffffff;
+    padding: 12px 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.f1-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #232a3a;
+    color: #d0d4dc;
+}
+
+.f1-table tr:hover {
+    background-color: #1e2534;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background-color: #161b26;
+    border: 1px solid #232a3a;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-value {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #8a94a6;
+}
+
+.clickable-link {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.clickable-link:hover {
+    color: #F6FF00;
+}
+
+/* ==========================================
+   6.1. ЛОГОТИПИ КОМАНД
+   ========================================== */
+.team-with-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.team-logo-sm {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.team-logo-lg {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.team-with-logo .team-logo-lg {
+    margin-right: 4px;
+}
+
+/* Рядок трансферу: Команда ➔ Команда */
+.transfer-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.transfer-arrow {
+    color: #8a94a6;
+}
+
+/* ==========================================
+   6.1.0. TRACK RECORDS: ПРАПОР У ПЕРШІЙ КОЛОНЦІ
+   ========================================== */
+.track-gp {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.track-flag {
+    width: 30px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 2px;
+    flex-shrink: 0;
+    border: 1px solid #232a3a;
+}
+
+/* ==========================================
+   6.1.1. КАРТКИ РЕКОРДІВ: СПИСОК РЕКОРДСМЕНІВ
+   ========================================== */
+.holders-list {
+    max-height: 230px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.holders-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.holders-list::-webkit-scrollbar-thumb {
+    background: #2e3545;
+    border-radius: 3px;
+}
+
+.holder-row {
+    margin-bottom: 10px;
+}
+
+.holder-name {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.holder-sub {
+    font-size: 12px;
+    color: #8a94a6;
+    margin-top: 2px;
+}
+
+/* ==========================================
+   6.2. SCHEDULE У СТИЛІ F1
+   ========================================== */
+.sch-heading {
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.sch-featured {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.sch-all {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.sch-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 24px;
+    border: 1px solid #232a3a;
+    background: linear-gradient(135deg, #1e2430, #0d1017) center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sch-card:hover {
+    transform: translateY(-4px);
+    border-color: #F6FF00;
+}
+
+.sch-card.is-sprint {
+    border-left: 3px solid #F6FF00;
+}
+
+.sch-round {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+.sch-name {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 30px;
+    line-height: 1.1;
+    margin-top: 12px;
+    color: #ffffff;
+}
+
+.sch-date {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 16px;
+    margin-top: 8px;
+    color: #ffffff;
+}
+
+.sch-circuit {
+    font-size: 12px;
+    color: #d0d4dc;
+    margin-top: 8px;
+}
+
+.sch-flag {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    height: 22px;
+    width: auto;
+    border-radius: 2px;
+}
+
+.sch-sprint {
+    background: #F6FF00;
+    color: #000;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 8px;
+}
+
+/* ==========================================
+   6.2.1. КАРТКИ NEXT / UPCOMING З ПОГОДОЮ (METEOBLUE)
+   ========================================== */
+.sch-card.has-weather {
+    aspect-ratio: auto;
+    min-height: 0;
+}
+
+/* Прапор у картках з погодою переїжджає догори праворуч */
+.sch-card.has-weather .sch-flag {
+    top: 20px;
+    right: 20px;
+    bottom: auto;
+}
+
+.sch-weather {
+    margin-top: 18px;
+    padding: 12px;
+    background: rgba(13, 16, 23, 0.88);
+    border: 1px solid #232a3a;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+}
+
+.sch-weather-title {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 11px;
+    color: #F6FF00;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.sch-weather iframe {
+    width: 100%;
+    height: 330px;
+    border: 0;
+    display: block;
+    border-radius: 6px;
+    background: transparent;
+}
+
+.sch-weather-attr {
+    margin-top: 6px;
+    text-align: right;
+    font-size: 11px;
+}
+
+.sch-weather-attr a {
+    color: #8a94a6;
+    text-decoration: none;
+}
+
+.sch-weather-attr a:hover {
+    color: #F6FF00;
+}
+
+/* Заглушка, коли код місця ще не вказано */
+.sch-weather-empty p {
+    font-size: 12px;
+    color: #a0a8b8;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.sch-weather-empty a {
+    font-size: 12px;
+    color: #F6FF00;
+    text-decoration: none;
+}
+
+.sch-weather-empty a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   6.3. UGS TV
+   ========================================== */
+.tv-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 20px;
+    align-items: start;
+}
+
+.tv-player-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 1px solid #232a3a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tv-player,
+.tv-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.tv-chat-wrap {
+    height: 100%;
+    min-height: 480px;
+    background: #0d1017;
+    border: 1px solid #232a3a;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tv-chat,
+.tv-chat iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.tv-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #8a94a6;
+}
+
+.tv-link {
+    color: #F6FF00;
+    text-decoration: none;
+    margin-left: 6px;
+}
+
+.tv-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   6.4. RATING (РЕЙТИНГ ПІЛОТІВ)
+   ========================================== */
+.rating-updated {
+    font-size: 13px;
+    color: #8a94a6;
+    margin-bottom: 20px;
+}
+
+.rating-updated b {
+    color: #F6FF00;
+    font-weight: normal;
+}
+
+/* Кольори рівнів */
+.tier-elite { color: #F6FF00; }
+.tier-top   { color: #00e676; }
+.tier-solid { color: #ffffff; }
+.tier-dev   { color: #ff6b5e; }
+
+/* Топ-3 */
+.rating-top {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.rating-top-card {
+    position: relative;
+    padding: 24px;
+    background: linear-gradient(180deg, #161b26 0%, #0f131c 100%);
+    border: 1px solid #232a3a;
+    border-top: 3px solid #2e3545;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.rating-top-card:hover {
+    transform: translateY(-4px);
+    border-color: #F6FF00;
+}
+
+.rating-top-card.rank-1 { border-top-color: #F6FF00; }
+.rating-top-card.rank-2 { border-top-color: #c0c6d1; }
+.rating-top-card.rank-3 { border-top-color: #cd7f32; }
+
+.rtc-rank {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 14px;
+    color: #8a94a6;
+    letter-spacing: 1px;
+}
+
+.rtc-name {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+.rtc-team {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #a0a8b8;
+}
+
+.rtc-rating {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    margin-top: 16px;
+    color: #ffffff;
+    font-variant-numeric: tabular-nums;
+}
+
+.rtc-tier {
+    margin-top: 8px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.rtc-stats {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #232a3a;
+    font-size: 12px;
+    color: #8a94a6;
+}
+
+.rtc-stats b {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+/* Таблиця рейтингу */
+.rating-table th,
+.rating-table td {
+    padding: 10px 12px;
+    white-space: nowrap;
+}
+
+.rt-trend {
+    min-width: 90px;
+}
+
+.rt-up   { color: #00e676; font-family: 'Formula1-Bold', sans-serif; font-size: 12px; }
+.rt-down { color: #ff1801; font-family: 'Formula1-Bold', sans-serif; font-size: 12px; }
+.rt-flat { color: #6b7280; font-family: 'Formula1-Bold', sans-serif; font-size: 12px; }
+
+.rt-new {
+    background: #F6FF00;
+    color: #000;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.rt-diff {
+    margin-left: 8px;
+    font-size: 11px;
+    color: #8a94a6;
+}
+
+.rt-prov {
+    margin-left: 6px;
+    padding: 1px 5px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 9px;
+    color: #ff9800;
+    border: 1px solid #ff9800;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+}
+
+.rt-score-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 170px;
+}
+
+.rt-score {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 16px;
+    min-width: 46px;
+    font-variant-numeric: tabular-nums;
+}
+
+.rt-bar {
+    flex: 1;
+    height: 6px;
+    background: #232a3a;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.rt-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: currentColor;
+}
+
+/* Пояснення формули */
+.rating-how {
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: #121620;
+    border: 1px solid #232a3a;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #a0a8b8;
+}
+
+.rating-how summary {
+    cursor: pointer;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 13px;
+    color: #F6FF00;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.rating-how p {
+    margin-top: 12px;
+    line-height: 1.7;
+}
+
+.rating-how ul {
+    margin: 10px 0 0 20px;
+    line-height: 1.8;
+}
+
+.rating-how b {
+    color: #ffffff;
+    font-weight: normal;
+}
+
+/* ==========================================
+   7. СТИЛІ ДЛЯ СЕКЦІЇ TEAMS (КОМАНДИ ТА ПІЛОТИ)
+   ========================================== */
+.team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #232a3a;
+}
+
+.team-name {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.team-card-logo {
+    max-height: 35px;
+    max-width: 80px;
+    object-fit: contain;
+}
+
+.team-drivers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.driver-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #10141d;
+    border-radius: 4px;
+    border-left: 3px solid #2e3545;
+    transition: background-color 0.2s ease;
+}
+
+.driver-slot:hover {
+    background-color: #141a26;
+}
+
+.driver-role {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 10px;
+    color: #8a94a6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.driver-name {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.driver-slot.primary-driver {
+    border-left-color: #3b82f6;
+}
+
+.driver-slot.reserve-driver {
+    border-left-color: #F6FF00;
+    background-color: #131822;
+    margin-top: 4px;
+    border-top: 1px solid rgba(246, 255, 0, 0.1);
+}
+
+.driver-slot.reserve-driver .driver-role {
+    color: #F6FF00;
+    font-weight: bold;
+}
+
+.driver-slot.reserve-driver .driver-name {
+    font-style: italic;
+    color: #d0d4dc;
+}
+
+.driver-slot.vacant-slot {
+    border-left-color: #4b5563;
+    opacity: 0.6;
+}
+
+.driver-slot.vacant-slot .driver-name {
+    color: #6b7280;
+    font-weight: normal;
+}
+
+/* ==========================================
+   7.1. КАРТКИ ПІЛОТІВ (DRIVERS GRID)
+   ========================================== */
+.drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.driver-card {
+    position: relative;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #121620;
+    border: 1px solid #232a3a;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.driver-card:hover {
+    transform: translateY(-3px);
+    border-color: #F6FF00;
+    box-shadow: 0 6px 20px rgba(246, 255, 0, 0.15);
+}
+
+.driver-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center right;
+    z-index: 1;
+}
+
+.driver-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(18, 22, 32, 0.95) 0%, rgba(18, 22, 32, 0.6) 55%, rgba(18, 22, 32, 0.15) 100%);
+    z-index: 2;
+}
+
+.driver-info {
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+}
+
+.driver-number {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 16px;
+    color: #8a94a6;
+    display: block;
+}
+
+.driver-card .driver-name {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    margin: 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.driver-country {
+    font-size: 13px;
+    color: #a0a8b8;
+    font-weight: 500;
+}
+
+/* ==========================================
+   8. ІНТЕРАКТИВНІ КАРТКИ HALL OF FAME ТА ДЕТАЛЬНА СТОРІНКА
+   ========================================== */
+.hof-card.clickable {
+    cursor: pointer;
+}
+
+.hof-card.clickable:hover {
+    border-color: #F6FF00;
+    box-shadow: 0 8px 24px rgba(246, 255, 0, 0.15);
+}
+
+.hof-click-hint {
+    margin-top: 12px;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 11px;
+    color: #F6FF00;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-header {
+    border-bottom: 2px solid #F6FF00;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.detail-season {
+    color: #a0a8b8;
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.detail-summary {
+    display: flex;
+    gap: 25px;
+    background: #161b26;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #F6FF00;
+    border: 1px solid #232a3a;
+    border-left-width: 4px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.detail-summary p {
+    font-family: 'Formula1-Regular', sans-serif;
+    font-size: 14px;
+    color: #d0d4dc;
+}
+
+.detail-summary strong {
+    font-family: 'Formula1-Bold', sans-serif;
+    color: #ffffff;
+}
+
+.detail-drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.detail-driver-card {
+    background-color: #161b26;
+    border: 1px solid #232a3a;
+    border-left: 3px solid #3b82f6;
+    border-radius: 8px;
+    padding: 18px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.detail-driver-card:hover {
+    transform: translateY(-2px);
+    border-color: #F6FF00;
+}
+
+.detail-driver-card h4 {
+    margin: 0 0 10px 0;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.detail-driver-card p {
+    margin: 4px 0;
+    color: #a0a8b8;
+    font-size: 13px;
+}
+
+.detail-driver-card p strong {
+    color: #ffffff;
+    font-family: 'Formula1-Bold', sans-serif;
+}
+
+/* ==========================================
+   8.1. СТОРІНКА ПІЛОТА: ВЕЛИКИЙ ХЕДЕР З ФОТО НА ВЕСЬ БЛОК
+   ========================================== */
+.driver-header-block {
+    position: relative;
+    height: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    background: #151922;
+    border: 1px solid #232a3a;
+    display: flex;
+    align-items: center;
+}
+
+.driver-header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right 20%;
+    z-index: 1;
+}
+
+.driver-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(21, 25, 34, 0.95) 0%, rgba(21, 25, 34, 0.6) 50%, rgba(21, 25, 34, 0.1) 100%);
+    z-index: 2;
+}
+
+.driver-header-info {
+    position: relative;
+    z-index: 3;
+    padding: 28px;
+}
+
+.driver-header-number {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 24px;
+    color: #8a94a6;
+}
+
+.driver-header-name {
+    font-family: 'Formula1-Bold', sans-serif;
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.driver-header-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #a0a8b8;
+    font-size: 16px;
+}
+
+/* ==========================================
+   8.2. СТАТИСТИКА ПІЛОТА / КОМАНДИ (ДВІ КОЛОНКИ)
+   ========================================== */
+.driver-stats-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+/* ==========================================
+   9. АДАПТИВНІСТЬ (RESPONSIVE STYLES)
+   ========================================== */
+@media (max-width: 992px) {
+    .news-hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .news-img-wrapper {
+        height: 280px;
+    }
+
+    .sch-featured {
+        grid-template-columns: 1fr;
+    }
+
+    .tv-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .tv-chat-wrap {
+        min-height: 420px;
+    }
+
+    .cd-box {
+        min-width: 110px;
+    }
+
+    .rating-top {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .nav-menu {
+        width: 100%;
+    }
+
+    .nav-item {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .menu-toggle {
+        position: absolute;
+        top: 12px;
+        right: 20px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .calendar-grid, .teams-grid, .hof-grid, .cards-grid, .drivers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-summary {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .driver-header-block {
+        height: 180px;
+    }
+
+    .driver-header-name {
+        font-size: 24px;
+    }
+
+    .driver-stats-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .article-title {
+        font-size: 24px;
+    }
+
+    .article-body p {
+        font-size: 15px;
+    }
+
+    .next-strip-wrap {
+        padding: 10px 20px 12px 20px;
+        gap: 12px;
+    }
+
+    .ns-name {
+        font-size: 17px;
+    }
+
+    .ns-socials {
+        gap: 8px;
+    }
+
+    .ns-social {
+        width: 34px;
+        height: 34px;
+    }
+
+    .ns-social img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .cd-grid {
+        gap: 6px;
+    }
+
+    .cd-box {
+        min-width: 62px;
+    }
+
+    .cd-unit {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .cd-title {
+        font-size: 17px;
+    }
+
+    .rtc-rating {
+        font-size: 44px;
+    }
+}

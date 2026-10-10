@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGS F1 League</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Шапка сайту у стилі F1 -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo-link" onclick="switchTab('home'); return false;">
+                <img src="assets/images/logo.png" alt="UGS Logo" class="league-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback" style="display:none;">UGS LEAGUE</span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="#home" id="nav-home" class="nav-item active" onclick="switchTab('home'); return false;">News</a>
+                <a href="#calendar" id="nav-calendar" class="nav-item" onclick="switchTab('calendar'); return false;">Schedule</a>
+                <a href="#results" id="nav-results" class="nav-item" onclick="switchTab('results'); return false;">Results</a>
+                <a href="#standings" id="nav-standings" class="nav-item" onclick="switchTab('standings'); return false;">Standings</a>
+                <a href="#teams" id="nav-teams" class="nav-item" onclick="switchTab('teams'); return false;">Teams</a>
+                <a href="#drivermarket" id="nav-drivermarket" class="nav-item" onclick="switchTab('drivermarket'); return false;">Driver Market</a>
+                <a href="#halloffame" id="nav-halloffame" class="nav-item" onclick="switchTab('halloffame'); return false;">Hall of Fame</a>
+                <a href="#records" id="nav-records" class="nav-item" onclick="switchTab('records'); return false;">Records</a>
+                <a href="#rating" id="nav-rating" class="nav-item" onclick="switchTab('rating'); return false;">Rating</a>
+            </nav>
+
+            <!-- Кнопка бічного меню (три жовті риски) -->
+            <button class="menu-toggle" id="menu-toggle" onclick="toggleSideMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Смуга "наступний етап" + соцмережі справа -->
+    <div class="next-strip" id="next-strip">
+        <div class="next-strip-wrap">
+            <!-- Ліва частина (заповнюється в main.js), клік веде в Schedule -->
+            <div class="next-strip-inner" id="next-strip-inner" onclick="switchTab('calendar')"></div>
+
+            <!-- Соцмережі -->
+            <div class="ns-socials">
+                <a class="ns-social" href="https://discord.gg/EMyWGahaF" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+                    <img src="assets/images/social/discord.png" alt="Discord" onerror="this.style.display='none'">
+                </a>
+                <a class="ns-social" href="https://www.tiktok.com/@ugs_f1" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                    <img src="assets/images/social/tiktok.png" alt="TikTok" onerror="this.style.display='none'">
+                </a>
+                <a class="ns-social" href="https://www.twitch.tv/ugs_tv" target="_blank" rel="noopener" aria-label="Twitch" title="Twitch">
+                    <img src="assets/images/social/twitch.png" alt="Twitch" onerror="this.style.display='none'">
+                </a>
+                <a class="ns-social" href="https://www.youtube.com/@UGSTV" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+                    <img src="assets/images/social/youtube.png" alt="YouTube" onerror="this.style.display='none'">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Бічне меню -->
+    <div id="side-overlay" class="side-overlay" onclick="closeSideMenu()"></div>
+    <aside id="side-menu" class="side-menu">
+        <div class="side-menu-head">
+            <span>MENU</span>
+            <button class="side-close" onclick="closeSideMenu()" aria-label="Close">✕</button>
+        </div>
+        <a href="#tv" id="side-tv" class="side-item" onclick="switchTab('tv'); return false;">
+            UGS TV <span class="side-live-dot"></span>
+        </a>
+        <a href="#documentation" id="side-documentation" class="side-item" onclick="switchTab('documentation'); return false;">
+            Documentation
+        </a>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- NEWS (countdown + картки новин з newsData) -->
+        <section id="section-home" class="tab-content active-section">
+
+            <!-- COUNTDOWN до наступного етапу -->
+            <div class="countdown" id="countdown" style="display:none;">
+                <div class="cd-label" id="cd-label">NEXT RACE STARTS IN</div>
+                <div class="cd-title" id="cd-title"></div>
+                <div class="cd-grid">
+                    <div class="cd-box"><div class="cd-num" id="cd-days">00</div><div class="cd-unit">DAYS</div></div>
+                    <div class="cd-sep">:</div>
+                    <div class="cd-box"><div class="cd-num" id="cd-hours">00</div><div class="cd-unit">HOURS</div></div>
+                    <div class="cd-sep">:</div>
+                    <div class="cd-box"><div class="cd-num" id="cd-mins">00</div><div class="cd-unit">MINUTES</div></div>
+                    <div class="cd-sep">:</div>
+                    <div class="cd-box"><div class="cd-num" id="cd-secs">00</div><div class="cd-unit">SECONDS</div></div>
+                </div>
+                <div class="cd-status" id="cd-status" style="display:none;">RACE IN PROGRESS</div>
+                <div class="cd-note" id="cd-note"></div>
+            </div>
+
+            <div id="news-container"></div>
+        </section>
+
+        <!-- SCHEDULE -->
+        <section id="section-calendar" class="tab-content">
+            <h1 class="page-title">Race Schedule</h1>
+            <div id="calendar-grid" class="calendar-grid"></div>
+        </section>
+
+        <!-- RESULTS -->
+        <section id="section-results" class="tab-content">
+            <div class="section-header">
+                <h1 class="page-title">Race Results</h1>
+                <div class="filter-group">
+                    <label for="season-select-results" class="filter-label">Season:</label>
+                    <select id="season-select-results" class="f1-select" onchange="renderResults()"></select>
+                </div>
+            </div>
+            <div id="race-selector" class="race-selector-tabs"></div>
+            <div id="results-table-container"></div>
+        </section>
+
+        <!-- STANDINGS -->
+        <section id="section-standings" class="tab-content">
+            <div class="section-header">
+                <h1 class="page-title">Championship Standings</h1>
+                <div class="filter-group">
+                    <label for="season-select-standings" class="filter-label">Season:</label>
+                    <select id="season-select-standings" class="f1-select" onchange="renderStandings()"></select>
+                </div>
+            </div>
+
+            <div class="sub-nav">
+                <button id="btn-drivers-standings" class="sub-nav-btn active" onclick="switchStandingsSubTab('drivers')">Drivers Championship</button>
+                <button id="btn-constructors-standings" class="sub-nav-btn" onclick="switchStandingsSubTab('constructors')">Constructors Championship</button>
+            </div>
+
+            <div id="standings-table-container"></div>
+        </section>
+
+        <!-- TEAMS -->
+        <section id="section-teams" class="tab-content">
+            <h1 class="page-title">F1 Teams</h1>
+            <div id="teams-grid" class="teams-grid"></div>
+        </section>
+
+        <!-- DRIVER MARKET -->
+        <section id="section-drivermarket" class="tab-content">
+            <h1 class="page-title">Driver Market</h1>
+            <div class="sub-nav">
+                <button id="btn-market-transfers" class="sub-nav-btn active" onclick="switchMarketSubTab('transfers')">Transfers</button>
+                <button id="btn-market-free" class="sub-nav-btn" onclick="switchMarketSubTab('free')">Free Agents</button>
+                <button id="btn-market-rumours" class="sub-nav-btn" onclick="switchMarketSubTab('rumours')">Rumours & News</button>
+            </div>
+            <div id="driver-market-container" class="cards-grid"></div>
+        </section>
+
+        <!-- HALL OF FAME -->
+        <section id="section-halloffame" class="tab-content">
+            <h1 class="page-title">Hall of Fame</h1>
+            <div class="sub-nav">
+                <button id="btn-hof-drivers" class="sub-nav-btn active" onclick="switchHofSubTab('drivers')">UGS Formula Pro Champions</button>
+                <button id="btn-hof-constructors" class="sub-nav-btn" onclick="switchHofSubTab('constructors')">Constructors' Champions</button>
+            </div>
+            <div id="hof-container" class="cards-grid"></div>
+        </section>
+
+        <!-- RECORDS -->
+        <section id="section-records" class="tab-content">
+            <h1 class="page-title">League Records</h1>
+            <div class="sub-nav">
+                <button id="btn-records-drivers" class="sub-nav-btn active" onclick="switchRecordsSubTab('drivers')">Drivers Records</button>
+                <button id="btn-records-constructors" class="sub-nav-btn" onclick="switchRecordsSubTab('constructors')">Constructors Records</button>
+                <button id="btn-records-tracks" class="sub-nav-btn" onclick="switchRecordsSubTab('tracks')">Track Records</button>
+            </div>
+            <div id="records-container" class="cards-grid"></div>
+        </section>
+
+        <!-- RATING (рейтинг пілотів, рахується в main.js) -->
+        <section id="section-rating" class="tab-content">
+            <h1 class="page-title">Driver Rating</h1>
+            <div id="rating-container"></div>
+        </section>
+
+        <!-- UGS TV -->
+        <section id="section-tv" class="tab-content">
+            <h1 class="page-title">UGS TV</h1>
+            <div class="tv-layout">
+                <div class="tv-player-wrap">
+                    <div id="tv-player" class="tv-player"></div>
+                </div>
+                <div class="tv-chat-wrap">
+                    <div id="tv-chat" class="tv-chat"></div>
+                </div>
+            </div>
+            <p class="tv-note">
+                Трансляції ліги UGS у прямому ефірі.
+                <a href="https://www.twitch.tv/ugs_tv" target="_blank" rel="noopener" class="tv-link">Відкрити на Twitch</a>
+            </p>
+        </section>
+
+        <!-- DOCUMENTATION -->
+        <section id="section-documentation" class="tab-content">
+            <h1 class="page-title">Documentation</h1>
+            <div class="cards-grid">
+
+                <div class="hof-card">
+                    <div style="font-family:'Formula1-Bold', sans-serif; font-size:11px; color:#F6FF00; text-transform:uppercase; letter-spacing:0.5px;">League Regulation</div>
+                    <h3 style="font-size:18px; margin:10px 0 8px 0; color:#ffffff;"></h3>
+                    <p style="color:#a0a8b8; font-size:14px; margin-bottom:18px;">Регламент ліги UGS Formula Pro</p>
+                    <a class="btn" href="assets/docs/UGS Formula Pro Regulation.docx" download="UGS_Reglament.docx" style="text-decoration:none;">Download</a>
+                </div>
+
+                <!-- Щоб додати ще один документ, скопіюйте блок вище, змініть назву, опис і href -->
+
+            </div>
+        </section>
+
+        <!-- ДЕТАЛЬНА СТОРІНКА (пілот, команда, стаття новини) -->
+        <section id="section-detail" class="tab-content">
+            <div id="detail-content"></div>
+        </section>
+
+    </main>
+
+    <!-- Порядок важливий: дані 1 сезону -> основний код -> адаптер -->
+    <script src="js/season1-results.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/season1-adapter.js"></script>
+</body>
+</html>
